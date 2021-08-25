@@ -30,21 +30,26 @@ function publicRooms() {
     return publicRooms;
   }
   
+function countRoom (roomName) {
+    return wsServer.sockets.adapter.rooms.get(roomName)?.size;
+}
+
 
 wsServer.on("connection", (socket) => {
     wsServer.sockets.emit("room_change", publicRooms());  //✅add another
     socket["nickname"] = "Anon";
     socket.onAny((event) => {
         console.log(`event : ${event}`);
+        socket.rooms.forEach(room => socket.to(room).emit("first", socket.nickname, countRoom(room)))
     });
     socket.on("enter_room", (roomName, done) => {   
         socket.join(roomName);
-        done()
-        socket.to(roomName).emit("welcome", socket.nickname);
+        done();
+        socket.to(roomName).emit("welcome", socket.nickname, countRoom(roomName));
         wsServer.sockets.emit("room_change", publicRooms()); //✅
     });
     socket.on("disconnecting", () => {
-        socket.rooms.forEach(room => socket.to(room).emit("bye", socket.nickname))
+        socket.rooms.forEach(room => socket.to(room).emit("bye", socket.nickname, countRoom(room)-1))
     });
     socket.on("disconnect", () => {
         wsServer.sockets.emit("room_change", publicRooms()) //✅
