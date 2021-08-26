@@ -160,5 +160,4 @@ function makeConnection() {
   myStream
     .getTracks()
     .forEach((track) => myPeerConnection.addTrack(track, myStream));
-  console.log(myStream.getTracks());
 }
