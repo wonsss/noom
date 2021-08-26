@@ -72,10 +72,10 @@ function handleCameraClick() {
     .getVideoTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (cameraOff) {
-    camereBtn.innerText = "Turn Camera On";
+    cameraBtn.innerText = "Turn Camera On";
     cameraOff = false;
   } else {
-    camereBtn.innerText = "Turn Camera Off";
+    cameraBtn.innerText = "Turn Camera Off";
     cameraOff = true;
   }
 }
@@ -113,3 +113,4 @@ muteBtn.addEventListener("click", handleMuteClick);
 cameraBtn.addEventListener("click", handleCameraClick);
 camerasSelect.addEventListener("input", handleCameraChange);
 fullscreenBtn.addEventListener("click", handleFullscreen);
+connectionBtn.addEventListener("click", handleConnectClick);
