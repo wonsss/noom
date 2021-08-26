@@ -5,10 +5,12 @@ const muteBtn = document.getElementById("mute");
 const cameraBtn = document.getElementById("camera");
 const camerasSelect = document.getElementById("cameras");
 const fullscreenBtn = document.getElementById("fullscreen");
+const connectionBtn = document.getElementById("connection");
 
 let myStream;
 let muted = false;
 let cameraOff = false;
+let connection = true;
 
 async function getCameras() {
   try {
@@ -69,12 +71,22 @@ function handleCameraClick() {
   myStream
     .getVideoTracks()
     .forEach((track) => (track.enabled = !track.enabled));
-  if (camereoff) {
+  if (cameraOff) {
     camereBtn.innerText = "Turn Camera On";
     cameraOff = false;
   } else {
     camereBtn.innerText = "Turn Camera Off";
     cameraOff = true;
+  }
+}
+function handleConnectClick() {
+  myStream.getTracks().forEach((track) => track.stop());
+  if (connection) {
+    connectionBtn.innerText = "Disconnect";
+    connection = false;
+  } else {
+    connectionBtn.innerText = "Connect";
+    connection = true;
   }
 }
 
