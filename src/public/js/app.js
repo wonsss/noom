@@ -156,7 +156,7 @@ socket.on("offer", (offer) => {
 
 // RTC Code
 function makeConnection() {
-  const myPeerConnection = new RTCPeerConnection();
+  myPeerConnection = new RTCPeerConnection();
   myStream
     .getTracks()
     .forEach((track) => myPeerConnection.addTrack(track, myStream));
