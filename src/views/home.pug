@@ -10,23 +10,6 @@ html(lang="en")
         header
             h1 Noom messenger
         main
-            div#welcome
-                form#form
-                    label room
-                        input#roomInput(placeholder="Which room do you want to enter?", required, type="text" )
-                    label nickname
-                        input#nameInput(placeholder="What's your name?", required, type="text")
-                    button Enter Room
-                h4 Open Rooms
-                ul
-            div#room
-                ul 
-                    h3
-                    span
-                    h4
-                    form#msg
-                        input(placeholder="message", required, type="text")
-                        button Send
    
         script(src="/socket.io/socket.io.js")
         script(src="/public/js/app.js")
