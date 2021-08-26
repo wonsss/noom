@@ -3,10 +3,26 @@ const socket = io();
 const myFace = document.getElementById("myFace");
 const muteBtn = document.getElementById("mute");
 const cameraBtn = document.getElementById("camera");
+const camerasSelect = document.getElementById("cameras");
 
 let myStream;
 let muted = false;
 let cameraOff = false;
+
+async function getCameras() {
+  try {
+    const devices = await navigator.mediaDevices.enumerateDevices();
+    const cameras = devices.filter((device) => device.kind === "videoinput"); //디바이스 인풋 중에 비디오 인풋만 보기 위해 필터
+    cameras.forEach((camera) => {
+      const option = document.createElement("option");
+      option.value = camera.deviceId;
+      option.innerText = camera.label;
+      camerasSelect.appendChild(option);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 async function getMedia() {
   try {
@@ -15,7 +31,7 @@ async function getMedia() {
       video: true,
     });
     myFace.srcObject = myStream;
-    console.log(myStream);
+    await getCameras();
   } catch (e) {
     console.log(e);
   }
