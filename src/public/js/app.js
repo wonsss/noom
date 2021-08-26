@@ -80,13 +80,14 @@ function handleCameraClick() {
   }
 }
 function handleConnectClick() {
-  myStream.getTracks().forEach((track) => track.stop());
   if (connection) {
     connectionBtn.innerText = "Disconnect";
     connection = false;
+    myStream.getTracks().forEach((track) => track.stop());
   } else {
     connectionBtn.innerText = "Connect";
     connection = true;
+    myStream.getTracks().forEach((track) => track.start());
   }
 }
 
