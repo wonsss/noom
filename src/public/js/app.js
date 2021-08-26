@@ -6,7 +6,7 @@ const cameraBtn = document.getElementById("camera");
 
 let myStream;
 let muted = false;
-let cameraoff = false;
+let cameraOff = false;
 
 async function getMedia() {
   try {
