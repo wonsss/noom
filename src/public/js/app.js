@@ -87,7 +87,7 @@ function handleConnectClick() {
   } else {
     connectionBtn.innerText = "Connect";
     connection = true;
-    myStream.getTracks().forEach((track) => track.start());
+    getMedia();
   }
 }
 
