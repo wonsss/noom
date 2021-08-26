@@ -40,10 +40,10 @@ function handleCameraClick() {
     .getVideoTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (camereoff) {
-    camereBtn.innerText = "Turn Camera Off";
+    camereBtn.innerText = "Turn Camera On";
     cameraOff = false;
   } else {
-    camereBtn.innerText = "Turn Camera On";
+    camereBtn.innerText = "Turn Camera Off";
     cameraOff = true;
   }
 }
